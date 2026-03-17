@@ -118,3 +118,12 @@ def is_priv_channel(channel_id: int) -> bool:
     result = c.fetchone()
     conn.close()
     return result is not None
+
+def get_priv_channel_owner(channel_id: int) -> str | None:
+    """Priv kanalının sahibinin (creator) user ID'sini döndür. Kanal bulunamazsa None."""
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    c.execute("SELECT creator_id FROM priv_channels WHERE channel_id = ?", (channel_id,))
+    result = c.fetchone()
+    conn.close()
+    return result[0] if result else None

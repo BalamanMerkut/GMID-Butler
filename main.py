@@ -88,11 +88,11 @@ async def check_expired_priv_channels():
             if channel:
                 try:
                     await channel.send(
-                        "⏰ Bu özel kanal 12 saatlik süresini tamamladı. "
+                        f"⏰ Bu özel kanal {PRIV_LIFETIME_HOURS} saatlik süresini tamamladı. "
                         "Kanal kaldırılıyor... İyi günler efendim!"
                     )
                     await asyncio.sleep(3)
-                    await channel.delete(reason="Priv kanal süresi doldu (12 saat)")
+                    await channel.delete(reason=f"Priv kanal süresi doldu ({PRIV_LIFETIME_HOURS} saat)")
                     print(f"[Priv] Süresi dolan kanal silindi: {channel_id}")
                 except Exception as e:
                     print(f"[Hata] Priv kanal silinemedi {channel_id}: {e}")
@@ -197,7 +197,7 @@ async def on_message(message: discord.Message):
         embed.add_field(
             name="🔐 Özel Kanal",
             value=(
-                "`!priv` → Sana özel, gizli bir kanal aç (12 saat ömürlü)\n"
+                                f"`!priv` → Sana özel, gizli bir kanal aç ({PRIV_LIFETIME_HOURS} saat ömürlü)\n"
                 "`!add @kullanıcı` → Özel kanalına birini ekle\n"
                 "`!close` → Özel kanalını şimdi kapat"
             ),
@@ -332,7 +332,7 @@ async def handle_priv(message: discord.Message):
             category=category,
             overwrites=overwrites,
             reason=f"Priv kanal: {message.author.display_name}",
-            topic=f"Özel kanal | Oluşturan: {message.author.display_name} | 12 saat sonra silinir."
+            topic=f"Özel kanal | Oluşturan: {message.author.display_name} | {PRIV_LIFETIME_HOURS} saat sonra silinir."
         )
 
         # DB'ye kaydet
@@ -362,12 +362,45 @@ async def handle_add(message: discord.Message):
         await message.reply("❌ Bu komut sadece özel (priv) kanallarda kullanılabilir.")
         return
 
-    if not message.mentions:
-        await message.reply("❓ Eklemek istediğiniz kişiyi etiketleyin: `!add @kullanıcı`")
+    guild = message.guild
+    content = message.content.strip()
+
+    # Komuttan sonraki kısmı al (ör: "!add alejandro" → "alejandro")
+    args = content[4:].strip()  # "!add" = 4 karakter
+
+    if not args:
+        await message.reply(
+            "❓ Kullanım:\n"
+            "`!add @kullanıcı` — mention ile ekle\n"
+            "`!add kullanıcıadı` — isim ile ara ve ekle"
+        )
         return
 
+    # ── 1. Önce mention'ları dene (@ ile etiketlendiyse) ───────────────────
+    members_to_add = list(message.mentions)
+
+    # ── 2. Mention yoksa isimle sunucu üyeleri arasında ara ────────────────
+    if not members_to_add:
+        query = args.lstrip("@").lower()
+        found = [
+            m for m in guild.members
+            if query in m.display_name.lower() or query in m.name.lower()
+        ]
+        if not found:
+            await message.reply(f"❌ `{args}` adında bir üye bulunamadı, Efendim.")
+            return
+        if len(found) > 1:
+            names = ", ".join(f"`{m.display_name}`" for m in found[:10])
+            await message.reply(
+                f"⚠️ Birden fazla eşleşme bulundu: {names}\n"
+                "Lütfen daha spesifik bir isim ya da `!add @mention` kullanın."
+            )
+            return
+        members_to_add = found
+
+    # ── 3. İzin ver ─────────────────────────────────────────────────────────
     added = []
-    for member in message.mentions:
+    for member in members_to_add:
         try:
             await message.channel.set_permissions(
                 member,
@@ -390,6 +423,14 @@ async def handle_close(message: discord.Message):
 
     if not db.is_priv_channel(channel.id):
         await message.reply("❌ Bu komut sadece özel (priv) kanallarda kullanılabilir.")
+        return
+
+    # Sadece kanalı açan kişi kapatabilir
+    owner_id = db.get_priv_channel_owner(channel.id)
+    if owner_id is None or str(message.author.id) != str(owner_id):
+        await message.reply(
+            "⛔ Bu kanalı yalnızca kanalı oluşturan kişi kapatabilir, Efendim."
+        )
         return
 
     await channel.send("🔒 Kanal kapatılıyor... Görüşmek üzere efendim!")
