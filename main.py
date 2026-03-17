@@ -179,6 +179,42 @@ async def on_message(message: discord.Message):
         await message.reply("🧠 Hafızam temizlendi Efendim! Yeni bir sayfa açıyoruz.")
         return
 
+    # ─── !help / .help — Komut Listesi ───────────────────────────────────────
+    if content.lower() in ("!help", ".help"):
+        embed = discord.Embed(
+            title="📜 GMID Butler — Komut Listesi",
+            description="Efendim, emrinizdeki tüm komutlar aşağıda listelenmiştir.",
+            color=discord.Color.gold()
+        )
+        embed.add_field(
+            name="🤖 Yapay Zeka",
+            value=(
+                "`!<soru>` veya `@GMID Butler <soru>` → Butler'a soru sor\n"
+                "`!unuttun` → Konuşma geçmişini temizle"
+            ),
+            inline=False
+        )
+        embed.add_field(
+            name="🔐 Özel Kanal",
+            value=(
+                "`!priv` → Sana özel, gizli bir kanal aç (12 saat ömürlü)\n"
+                "`!add @kullanıcı` → Özel kanalına birini ekle\n"
+                "`!close` → Özel kanalını şimdi kapat"
+            ),
+            inline=False
+        )
+        embed.add_field(
+            name="🧹 Temizlik",
+            value=(
+                "`!temizle` → Bot komutları kanalını manuel temizle *(Yönetici)*\n"
+                "_Otomatik temizlik her gece yapılır._"
+            ),
+            inline=False
+        )
+        embed.set_footer(text="GMID Butler • Her zaman hizmetinizdeyim, Efendim 🎩")
+        await message.reply(embed=embed)
+        return
+
     # ─── AI Yanıtı: @ etiketi veya ! ile başlayan mesajlar ──────────────────
     mentioned = client.user.mentioned_in(message)
     starts_with_bang = content.startswith("!")
