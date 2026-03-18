@@ -52,5 +52,8 @@ python main.py
 ## 🛡️ License
 This project is open-source and available under the MIT License.
 
+## 💝 Support
+If you find GMID Butler helpful and would like to support its development, you can do so via [Patreon](https://www.patreon.com/posts/discord-ai-bot-153366957?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link). Your support is greatly appreciated!
+
 ---
 *GMID Butler • Always at your service, Sir.*
