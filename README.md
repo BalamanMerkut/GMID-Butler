@@ -5,7 +5,7 @@ GMID Butler is a sophisticated Discord bot powered by Google's Gemini AI. Design
 ## 🌟 Features
 
 - **🧠 Advanced AI Conversations**: Powered by Gemini 2.0 Flash, providing intelligent and contextual responses.
-- **🌍 Multi-language Support**: Supports **English**, **Turkish**, and **Spanish**. Use `!language [en/tr/es]` to switch.
+- **🌍 Multi-language Support**: Supports **English**, **Turkish**, **Spanish**, **Italian**, **German**, **French**, **Russian**, and **Chinese**. Use `!language [code]` to switch.
 - **🔐 Private Channels**: Users can create temporary secret channels with `!priv` that automatically delete after a set time.
 - **🧹 Automatic Cleanup**: Schedule daily message purging for any channel with `!set clear [hour]`.
 - **🎩 Butler Persona**: A refined, polite, and respectful tone in every interaction.
@@ -42,7 +42,7 @@ python main.py
 | :--- | :--- |
 | `!<question>` | Ask the Butler a question |
 | `!help` | Show all available commands |
-| `!priv` | Create a private temporary channel |
+| `!priv [hours]` | Create a private temporary channel |
 | `!add @user` | Add a member to your private channel |
 | `!close` | Close your private channel immediately |
 | `!set clear [hour]` | Schedule daily cleanup (0-23 UTC) |

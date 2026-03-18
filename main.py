@@ -70,7 +70,7 @@ STRINGS = {
         "help_ai_title": "🤖 Artificial Intelligence",
         "help_ai_val": "`!<question>` or `@GMID Butler <question>` → Ask Butler a question\n`!forget` → Clear conversation history",
         "help_priv_title": "🔐 Private Channel",
-        "help_priv_val": "`!priv` → Open a private, secret channel ({hours}h)\n`!add @user` → Add someone to your channel\n`!close` → Close your channel now",
+        "help_priv_val": "`!priv [hours]` → Open a private, secret channel ({hours}h)\n`!add @user` → Add someone to your channel\n`!close` → Close your channel now",
         "help_clean_title": "🧹 Cleanup & Settings",
         "help_clean_val": "`!clear` → Manually clean this channel *(Manager)*\n`!set clear [hour]` → Schedule daily cleanup (0-23 UTC)\n`!set remove` → Remove cleanup from this channel\n`!set control` → List all active cleanup schedules\n`!language [en/tr/es]` → Change bot language for this server",
         "help_footer": "GMID Butler • Always at your service, Sir 🎩"
@@ -104,7 +104,7 @@ STRINGS = {
         "help_ai_title": "🤖 Yapay Zeka",
         "help_ai_val": "`!<soru>` veya `@GMID Butler <soru>` → Butler'a soru sor\n`!forget` → Konuşma geçmişini temizle",
         "help_priv_title": "🔐 Özel Kanal",
-        "help_priv_val": "`!priv` → Sana özel kanal aç ({hours} saat)\n`!add @kullanıcı` → Kanalına birini ekle\n`!close` → Kanalı kapat",
+        "help_priv_val": "`!priv [saat]` → Sana özel kanal aç ({hours} saat)\n`!add @kullanıcı` → Kanalına birini ekle\n`!close` → Kanalı kapat",
         "help_clean_title": "🧹 Temizlik ve Ayarlar",
         "help_clean_val": "`!clear` → Bu kanalı manuel temizle *(Yönetici)*\n`!set clear [saat]` → Günlük temizlik ayarla (0-23 UTC)\n`!set remove` → Temizlik ayarını kaldır\n`!set control` → Aktif temizlikleri listele\n`!language [en/tr/es]` → Bot dilini değiştir",
         "help_footer": "GMID Butler • Her zaman hizmetinizdeyim, Efendim 🎩"
@@ -138,10 +138,180 @@ STRINGS = {
         "help_ai_title": "🤖 Inteligencia Artificial",
         "help_ai_val": "`!<pregunta>` o `@GMID Butler <pregunta>` → Hacer una pregunta\n`!forget` → Borrar historial",
         "help_priv_title": "🔐 Canal Privado",
-        "help_priv_val": "`!priv` → Abrir un canal privado ({hours}h)\n`!add @usuario` → Añadir a alguien\n`!close` → Cerrar ahora",
+        "help_priv_val": "`!priv [horas]` → Abrir un canal privado ({hours}h)\n`!add @usuario` → Añadir a alguien\n`!close` → Cerrar ahora",
         "help_clean_title": "🧹 Limpieza y Ajustes",
         "help_clean_val": "`!clear` → Limpiar manualmente *(Gerente)*\n`!set clear [hora]` → Programar limpieza (0-23 UTC)\n`!set remove` → Eliminar limpieza\n`!set control` → Listar limpiezas activas\n`!language [en/tr/es]` → Cambiar idioma del bot",
         "help_footer": "GMID Butler • Siempre a su servicio, Señor 🎩"
+    },
+    "it": {
+        "priv_closed": "🔒 Il canale si sta chiudendo... Arrivederci signore!",
+        "priv_welcome": "🔐 Benvenuto {mention}!\nQuesto canale privato verrà eliminato automaticamente tra **{hours} ore**.\n⏰ Orario di eliminazione: **{time}**\n\nPer aggiungere qualcuno: `!add @utente`\nPer chiudere ora: `!close`",
+        "cleanup_done": "🧹 **Pulizia giornaliera completata!** {count} messaggi rimossi. _(Prossima pulizia tra 24 ore.)_",
+        "set_success": "✅ Signore, questo canale (**#{name}**) è ora impostato per essere pulito ogni giorno alle **{hour}:00 UTC**.",
+        "set_removed": "✅ Signore, la pulizia automatica è stata rimossa per **#{name}**.",
+        "lang_success": "✅ Lingua impostata su **Italiano**, Signore.",
+        "lang_error": "❌ Lingua non supportata, Signore. Usa `en`, `tr`, `es`, `it`, `zh`, `ru`, `de`, `fr`.",
+        "no_perms": "❌ Deve avere i permessi di gestione per usare questo comando, Signore.",
+        "hour_error": "❌ L'ora deve essere compresa tra 0-23, Signore.",
+        "priv_exists": "📌 Hai già un canale privato: {mention} — chiudilo prima con `!close`.",
+        "priv_created": "✅ Signore, il tuo canale privato è stato creato: {mention}",
+        "add_usage": "❓ Utilizzo:\n`!add @utente` — aggiungi tramite menzione\n`!add nomeutente` — cerca e aggiungi per nome",
+        "user_not_found": "❌ Utente `{name}` non trovato, Signore.",
+        "multiple_found": "⚠️ Trovate più corrispondenze: {names}\nSii più specifico o usa `!add @menzione`.",
+        "add_success": "✅ I seguenti utenti sono stati aggiunti: {names}",
+        "add_fail": "❌ Impossibile aggiungere nessuno. Possibile problema di permessi.",
+        "close_owner": "⛔ Solo il creatore può chiudere questo canale, Signore.",
+        "forget_success": "🧠 La mia memoria è stata cancellata, signore! Stiamo aprendo una nuova pagina.",
+        "ai_error": "Perdonatemi signore, la mia mente è momentaneamente offuscata. Per favore, riprovate.",
+        "control_none": "📜 Nessun canale è attualmente impostato per la pulizia automatica, Signore.",
+        "control_list": "📜 **Programmi di pulizia attivi:**\n{lines}",
+        "manual_cleanup_done": "🧹 Il canale dei comandi del bot è stato pulito! {count} messaggi rimossi.",
+        "priv_expired": "⏰ Questo canale privato ha completato la sua durata di {hours} ore. Verrà rimosso... Buona giornata signore!",
+        "help_title": "📜 GMID Butler — Elenco Comandi",
+        "help_desc": "Signore, tutti i comandi al vostro servizio sono elencati di seguito.",
+        "help_ai_title": "🤖 Intelligenza Artificiale",
+        "help_ai_val": "`!<domanda>` o `@GMID Butler <domanda>` → Fai una domanda al Butler\n`!forget` → Cancella la cronologia delle conversazioni",
+        "help_priv_title": "🔐 Canale Privato",
+        "help_priv_val": "`!priv [ore]` → Apri un canale segreto privato per te ({hours} ore)\n`!add @utente` → Aggiungi qualcuno al tuo canale\n`!close` → Chiudi il tuo canale ora",
+        "help_clean_title": "🧹 Pulizia e Impostazioni",
+        "help_clean_val": "`!clear` → Pulisci manualmente questo canale *(Manager)*\n`!set clear [ora]` → Pianifica la pulizia giornaliera (0-23 UTC)\n`!set remove` → Rimuovi la pulizia da questo canale\n`!set control` → Elenca tutti i programmi di pulizia attivi\n`!language [codice]` → Cambia la lingua del bot per questo server",
+        "help_footer": "GMID Butler • Sempre al vostro servizio, Signore 🎩"
+    },
+    "de": {
+        "priv_closed": "🔒 Der Kanal wird geschlossen... Auf Wiedersehen, Sir!",
+        "priv_welcome": "🔐 Willkommen {mention}!\nDieser private Kanal wird automatisch in **{hours} Stunden** gelöscht.\n⏰ Löschzeitpunkt: **{time}**\n\nUm jemanden hinzuzufügen: `!add @nutzer`\nUm jetzt zu schließen: `!close`",
+        "cleanup_done": "🧹 **Tägliche Reinigung abgeschlossen!** {count} Nachrichten entfernt. _(Nächste Reinigung in 24 Stunden.)_",
+        "set_success": "✅ Sir, dieser Kanal (**#{name}**) ist nun so eingestellt, dass er jeden Tag um **{hour}:00 UTC** gereinigt wird.",
+        "set_removed": "✅ Sir, die automatische Reinigung wurde für **#{name}** entfernt.",
+        "lang_success": "✅ Sprache auf **Deutsch** eingestellt, Sir.",
+        "lang_error": "❌ Nicht unterstützte Sprache, Sir. Verfügbar: `en`, `tr`, `es`, `it`, `zh`, `ru`, `de`, `fr`.",
+        "no_perms": "❌ Sie müssen über Verwaltungsberechtigungen verfügen, um diesen Befehl zu verwenden, Sir.",
+        "hour_error": "❌ Die Stunde muss zwischen 0-23 liegen, Sir.",
+        "priv_exists": "📌 Sie haben bereits einen privaten Kanal: {mention} — schließen Sie ihn zuerst mit `!close`.",
+        "priv_created": "✅ Sir, Ihr privater Kanal wurde erstellt: {mention}",
+        "add_usage": "❓ Verwendung:\n`!add @nutzer` — per Erwähnung hinzufügen\n`!add nutzername` — nach Namen suchen und hinzufügen",
+        "user_not_found": "❌ Nutzer `{name}` nicht gefunden, Sir.",
+        "multiple_found": "⚠️ Mehrere Treffer gefunden: {names}\nBitte seien Sie genauer oder verwenden Sie `!add @mention`.",
+        "add_success": "✅ Die folgenden Nutzer wurden hinzugefügt: {names}",
+        "add_fail": "❌ Niemand konnte hinzugefügt werden. Möglicherweise ein Berechtigungsproblem.",
+        "close_owner": "⛔ Nur der Ersteller kann diesen Kanal schließen, Sir.",
+        "forget_success": "🧠 Mein Gedächtnis wurde gelöscht, Sir! Wir schlagen ein neues Kapitel auf.",
+        "ai_error": "Verzeihen Sie mir Sir, mein Verstand ist momentan etwas getrübt. Bitte versuchen Sie es erneut.",
+        "control_none": "📜 Derzeit sind keine Kanäle für die automatische Reinigung eingestellt, Sir.",
+        "control_list": "📜 **Aktive Reinigungspläne:**\n{lines}",
+        "manual_cleanup_done": "🧹 Der Bot-Befehlskanal wurde gereinigt! {count} Nachrichten entfernt.",
+        "priv_expired": "⏰ Dieser private Kanal hat seine Dauer von {hours} Stunden beendet. Er wird entfernt... Einen schönen Tag noch, Sir!",
+        "help_title": "📜 GMID Butler — Befehlsliste",
+        "help_desc": "Sir, alle Befehle zu Ihren Diensten sind unten aufgeführt.",
+        "help_ai_title": "🤖 Künstliche Intelligenz",
+        "help_ai_val": "`!<frage>` oder `@GMID Butler <frage>` → Fragen Sie Butler eine Frage\n`!forget` → Konversationsverlauf löschen",
+        "help_priv_title": "🔐 Privater Kanal",
+        "help_priv_val": "`!priv [stunden]` → Öffnen Sie einen privaten, geheimen Kanal für sich ({hours}h)\n`!add @nutzer` → Jemanden zu Ihrem Kanal hinzufügen\n`!close` → Schließen Sie Ihren Kanal jetzt",
+        "help_clean_title": "🧹 Reinigung & Einstellungen",
+        "help_clean_val": "`!clear` → Diesen Kanal manuell reinigen *(Manager)*\n`!set clear [stunde]` → Tägliche Reinigung planen (0-23 UTC)\n`!set remove` → Reinigung von diesem Kanal entfernen\n`!set control` → Alle aktiven Reinigungspläne auflisten\n`!language [code]` → Bot-Sprache für diesen Server ändern",
+        "help_footer": "GMID Butler • Stets zu Ihren Diensten, Sir 🎩"
+    },
+    "fr": {
+        "priv_closed": "🔒 Le salon se ferme... Au revoir Monsieur !",
+        "priv_welcome": "🔐 Bienvenue {mention}!\nCe salon privé sera automatiquement supprimé dans **{hours} heures**.\n⏰ Heure de suppression : **{time}**\n\nPour ajouter quelqu'un : `!add @utilisateur`\nPour fermer maintenant : `!close`",
+        "cleanup_done": "🧹 **Nettoyage quotidien terminé !** {count} messages supprimés. _(Prochain nettoyage dans 24 heures.)_",
+        "set_success": "✅ Monsieur, ce salon (**#{name}**) est désormais configuré pour être nettoyé chaque jour à **{hour}:00 UTC**.",
+        "set_removed": "✅ Monsieur, le nettoyage automatique a été supprimé pour **#{name}**.",
+        "lang_success": "✅ Langue configurée sur le **Français**, Monsieur.",
+        "lang_error": "❌ Langue non supportée, Monsieur. Utilisez `en`, `tr`, `es`, `it`, `zh`, `ru`, `de`, `fr`.",
+        "no_perms": "❌ Vous devez avoir les permissions de gestion pour utiliser cette commande, Monsieur.",
+        "hour_error": "❌ L'heure doit être comprise entre 0-23, Monsieur.",
+        "priv_exists": "📌 Vous avez déjà un salon privé : {mention} — fermez-le d'abord avec `!close`.",
+        "priv_created": "✅ Monsieur, votre salon privé a été créé : {mention}",
+        "add_usage": "❓ Utilisation :\n`!add @utilisateur` — ajouter via mention\n`!add nomutilisateur` — rechercher et ajouter par nom",
+        "user_not_found": "❌ Utilisateur `{name}` non trouvé, Monsieur.",
+        "multiple_found": "⚠️ Plusieurs correspondances trouvées : {names}\nVeuillez être plus précis ou utiliser `!add @mention`.",
+        "add_success": "✅ Les utilisateurs suivants ont été ajoutés : {names}",
+        "add_fail": "❌ Personne n'a pu être ajouté. Problème de permissions probable.",
+        "close_owner": "⛔ Seul le créateur peut fermer ce salon, Monsieur.",
+        "forget_success": "🧠 Ma mémoire a été effacée, Monsieur ! Nous ouvrons une nouvelle page.",
+        "ai_error": "Pardonnez-moi Monsieur, mon esprit est momentanément embrumé. Veuillez réessayer.",
+        "control_none": "📜 Aucun salon n'est actuellement configuré pour le nettoyage automatique, Monsieur.",
+        "control_list": "📜 **Plannings de nettoyage actifs :**\n{lines}",
+        "manual_cleanup_done": "🧹 Le salon des commandes du bot a été nettoyé ! {count} messages supprimés.",
+        "priv_expired": "⏰ Ce salon privé a terminé sa durée de {hours} heures. Il est en cours de suppression... Bonne journée Monsieur !",
+        "help_title": "📜 GMID Butler — Liste des commandes",
+        "help_desc": "Monsieur, toutes les commandes à votre service sont listées ci-dessous.",
+        "help_ai_title": "🤖 Intelligence Artificielle",
+        "help_ai_val": "`!<question>` ou `@GMID Butler <question>` → Poser une question au Butler\n`!forget` → Effacer l'historique des conversations",
+        "help_priv_title": "🔐 Salon Privé",
+        "help_priv_val": "`!priv [heures]` → Ouvrir un salon secret privé pour vous ({hours}h)\n`!add @utilisateur` → Ajouter quelqu'un à votre salon\n`!close` → Fermer votre salon maintenant",
+        "help_clean_title": "🧹 Nettoyage & Paramètres",
+        "help_clean_val": "`!clear` → Nettoyer manuellement ce salon *(Manager)*\n`!set clear [heure]` → Planifier un nettoyage quotidien (0-23 UTC)\n`!set remove` → Supprimer le nettoyage de ce salon\n`!set control` → Lister tous les plannings de nettoyage actifs\n`!language [code]` → Changer la langue du bot pour ce serveur",
+        "help_footer": "GMID Butler • Toujours à votre service, Monsieur 🎩"
+    },
+    "ru": {
+        "priv_closed": "🔒 Канал закрывается... До свидания, Сэр!",
+        "priv_welcome": "🔐 Добро пожаловать, {mention}!\nЭтот приватный канал будет автоматически удален через **{hours} ч.**\n⏰ Время удаления: **{time}**\n\nЧтобы добавить кого-то: `!add @пользователь`\nЧтобы закрыть сейчас: `!close`",
+        "cleanup_done": "🧹 **Ежедневная очистка завершена!** Удалено {count} сообщений. _(Следующая очистка через 24 часа.)_",
+        "set_success": "✅ Сэр, этот канал (**#{name}**) теперь будет очищаться каждый день в **{hour}:00 UTC**.",
+        "set_removed": "✅ Сэр, автоматическая очистка для **#{name}** отключена.",
+        "lang_success": "✅ Язык установлен на **Русский**, Сэр.",
+        "lang_error": "❌ Неподдерживаемый язык, Сэр. Используйте `en`, `tr`, `es`, `it`, `zh`, `ru`, `de`, `fr`.",
+        "no_perms": "❌ У вас должны быть права на управление сервером, Сэр.",
+        "hour_error": "❌ Час должен быть от 0 до 23, Сэр.",
+        "priv_exists": "📌 У вас уже есть приватный канал: {mention} — сначала закройте его с помощью `!close`.",
+        "priv_created": "✅ Сэр, ваш приватный канал создан: {mention}",
+        "add_usage": "❓ Использование:\n`!add @упоминание` — добавить через упоминание\n`!add имя` — поиск и добавление по имени",
+        "user_not_found": "❌ Пользователь `{name}` не найден, Сэр.",
+        "multiple_found": "⚠️ Найдено несколько совпадений: {names}\nУточните имя или используйте `!add @упоминание`.",
+        "add_success": "✅ Следующие пользователи были добавлены: {names}",
+        "add_fail": "❌ Никого не удалось добавить. Возможно, проблема с правами.",
+        "close_owner": "⛔ Только создатель может закрыть этот канал, Сэр.",
+        "forget_success": "🧠 Моя память очищена, Сэр! Мы открываем новую страницу.",
+        "ai_error": "Простите меня, Сэр, мой разум на мгновение затуманился. Пожалуйста, попробуйте еще раз.",
+        "control_none": "📜 На данный момент нет каналов, настроенных на автоматическую очистку, Сэр.",
+        "control_list": "📜 **Активные графики очистки:**\n{lines}",
+        "manual_cleanup_done": "🧹 Канал команд бота очищен! Удалено {count} сообщений.",
+        "priv_expired": "⏰ Время работы этого приватного канала ({hours} ч.) истекло. Он удаляется... Хорошего дня, Сэр!",
+        "help_title": "📜 GMID Butler — Список команд",
+        "help_desc": "Сэр, все команды к вашим услугам перечислены ниже.",
+        "help_ai_title": "🤖 Искусственный интеллект",
+        "help_ai_val": "`!<вопрос>` или `@GMID Butler <вопрос>` → Задать вопрос Батлеру\n`!forget` → Очистить историю разговоров",
+        "help_priv_title": "🔐 Приватный канал",
+        "help_priv_val": "`!priv [часы]` → Открыть приватный секретный канал ({hours} ч.)\n`!add @пользователь` → Добавить кого-то в свой канал\n`!close` → Закрыть свой канал сейчас",
+        "help_clean_title": "🧹 Очистка и настройки",
+        "help_clean_val": "`!clear` → Очистить этот канал вручную *(Менеджер)*\n`!set clear [час]` → Запланировать ежедневную очистку (0-23 UTC)\n`!set remove` → Удалить очистку из этого канала\n`!set control` → Список всех активных графиков очистки\n`!language [код]` → Изменить язык бота для этого сервера",
+        "help_footer": "GMID Butler • Всегда к вашим услугам, Сэр 🎩"
+    },
+    "zh": {
+        "priv_closed": "🔒 频道正在关闭... 再见，先生！",
+        "priv_welcome": "🔐 欢迎 {mention}!\n此私人频道将在 **{hours} 小时**后自动删除。\n⏰ 删除时间：**{time}**\n\n要添加某人：`!add @用户`\n要立即关闭：`!close`",
+        "cleanup_done": "🧹 **每日清理完成！** 已删除 {count} 条消息。_（下次清理在 24 小时后。）_",
+        "set_success": "✅ 先生，此频道 (**#{name}**) 现在设置为每天 **{hour}:00 UTC** 进行清理。",
+        "set_removed": "✅ 先生，已取消 **#{name}** 的自动清理设置。",
+        "lang_success": "✅ 语言已设置为 **中文**，先生。",
+        "lang_error": "❌ 不支持的语言，先生。请使用 `en`、`tr`、`es`、`it`、`zh`、`ru`、`de`、`fr`。",
+        "no_perms": "❌ 您必须拥有管理权限才能使用此命令，先生。",
+        "hour_error": "❌ 小时必须在 0 到 23 之间，先生。",
+        "priv_exists": "📌 您已经有一个私人频道：{mention} — 请先通过 `!close` 关闭它。",
+        "priv_created": "✅ 先生，您的私人频道已创建：{mention}",
+        "add_usage": "❓ 用法：\n`!add @用户` — 通过提及添加\n`!add 用户名` — 通过名称搜索并添加",
+        "user_not_found": "❌ 未找到用户 `{name}`，先生。",
+        "multiple_found": "⚠️ 找到多个匹配项：{names}\n请提供更具体的名称或使用 `!add @提及`。",
+        "add_success": "✅ 已添加以下用户：{names}",
+        "add_fail": "❌ 无法添加任何人。可能是权限问题。",
+        "close_owner": "⛔ 只有创建者可以关闭此频道，先生。",
+        "forget_success": "🧠 我的记忆已被清除，先生！我们正在开启新的一页。",
+        "ai_error": "请原谅我，先生，我的思绪暂时有些混乱。请再试一次。",
+        "control_none": "📜 目前没有频道设置为自动清理，先生。",
+        "control_list": "📜 **活跃清理计划：**\n{lines}",
+        "manual_cleanup_done": "🧹 机器人命令频道已清理！已删除 {count} 条消息。",
+        "priv_expired": "⏰ 此私人频道的 {hours} 小时有效期已到。正在将其删除... 祝您度过愉快的一天，先生！",
+        "help_title": "📜 GMID Butler — 命令列表",
+        "help_desc": "先生，为您服务的所有命令均列在下方。",
+        "help_ai_title": "🤖 人工智能",
+        "help_ai_val": "`!<问题>` 或 `@GMID Butler <问题>` → 向管家提问\n`!forget` → 清除对话历史记录",
+        "help_priv_title": "🔐 私人频道",
+        "help_priv_val": "`!priv [小时]` → 为您开启私人秘密频道 ({hours}小时)\n`!add @用户` → 将某人添加到您的频道\n`!close` → 立即关闭您的频道",
+        "help_clean_title": "🧹 清理与设置",
+        "help_clean_val": "`!clear` → 手动清理此频道 *(管理员)*\n`!set clear [小时]` → 设置每日清理时间 (0-23 UTC)\n`!set remove` → 从此频道中移除清理设置\n`!set control` → 列出所有活跃的清理计划\n`!language [代码]` → 更改此服务器的机器人语言",
+        "help_footer": "GMID Butler • 竭诚为您服务，先生 🎩"
     }
 }
 
@@ -355,7 +525,12 @@ async def handle_language(message: discord.Message):
     mapping = {
         "english": "en", "en": "en",
         "turkish": "tr", "tr": "tr", "türkçe": "tr",
-        "spanish": "es", "es": "es", "español": "es"
+        "spanish": "es", "es": "es", "español": "es",
+        "italian": "it", "it": "it", "italiano": "it",
+        "german": "de", "de": "de", "deutsch": "de",
+        "french": "fr", "fr": "fr", "français": "fr",
+        "russian": "ru", "ru": "ru", "русский": "ru",
+        "chinese": "zh", "zh": "zh", "中文": "zh"
     }
 
     if lang_input not in mapping:
@@ -387,7 +562,7 @@ async def on_message(message: discord.Message):
         return
 
     # ─── !priv — Gizli Kanal Aç ─────────────────────────────────────────────
-    if content.lower() == "!priv":
+    if content_lower.startswith("!priv"):
         await handle_priv(message)
         return
 
@@ -502,6 +677,17 @@ async def handle_priv(message: discord.Message):
     guild = message.guild
     if not guild: return
     g_id = guild.id
+    
+    # Süre belirleme: !priv 5 -> 5 saat
+    parts = message.content.strip().split()
+    lifetime = PRIV_LIFETIME_HOURS
+    if len(parts) > 1:
+        try:
+            val = int(parts[1])
+            if 0 < val <= 168: # Max 1 hafta (168 saat)
+                lifetime = val
+        except ValueError:
+            pass # Geçersiz sayı, varsayılanı kullan
 
     # Kategoriyi bul, yoksa oluştur
     category = discord.utils.get(guild.categories, name=PRIV_CATEGORY_NAME)
@@ -548,14 +734,14 @@ async def handle_priv(message: discord.Message):
         )
 
         # DB'ye kaydet
-        delete_at = datetime.utcnow() + timedelta(hours=PRIV_LIFETIME_HOURS)
+        delete_at = datetime.utcnow() + timedelta(hours=lifetime)
         db.register_priv_channel(channel.id, message.author.id, guild.id, delete_at)
 
         delete_at_local = delete_at + timedelta(hours=3)  # UTC+3
         await channel.send(
             t(g_id, "priv_welcome", 
               mention=message.author.mention, 
-              hours=PRIV_LIFETIME_HOURS, 
+              hours=lifetime, 
               time=delete_at_local.strftime('%d.%m.%Y %H:%M'))
         )
         await message.reply(t(g_id, "priv_created", mention=channel.mention))
