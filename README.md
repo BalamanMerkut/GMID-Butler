@@ -1,111 +1,56 @@
-# GMID Butler — Discord AI Bot
+# GMID Butler — The Noble Discord Assistant
 
-A smart Discord bot powered by **Google Gemini AI**. It remembers conversations, manages private channels, and keeps your bot-commands channel clean automatically.
+GMID Butler is a sophisticated Discord bot powered by Google's Gemini AI. Designed with the persona of a noble head butler, it serves your server with elegance, handling everything from AI-driven conversations to automatic channel management.
 
----
+## 🌟 Features
 
-## Features
+- **🧠 Advanced AI Conversations**: Powered by Gemini 2.0 Flash, providing intelligent and contextual responses.
+- **🌍 Multi-language Support**: Supports **English**, **Turkish**, and **Spanish**. Use `!language [en/tr/es]` to switch.
+- **🔐 Private Channels**: Users can create temporary secret channels with `!priv` that automatically delete after a set time.
+- **🧹 Automatic Cleanup**: Schedule daily message purging for any channel with `!set clear [hour]`.
+- **🎩 Butler Persona**: A refined, polite, and respectful tone in every interaction.
 
-- 🧠 **Conversation Memory** — The bot remembers each user's last 10 messages across a session
-- 🔐 **Private Channels** (`!priv`) — Creates a hidden text channel visible only to you
-- ➕ **Add Members** (`!add @user`) — Invite someone into your private channel
-- 🔒 **Close Channel** (`!close`) — Delete the private channel instantly
-- ⏰ **Auto-Delete** — Private channels are automatically deleted after 12 hours
-- 🧹 **Daily Cleanup** — Purges a bot-commands channel once every 24 hours
-- 🗑️ **Reset Memory** (`!unuttun`) — Clears your AI conversation history
+## 🚀 Setup Instructions
 
----
+### 1. Prerequisites
+- Python 3.9 or higher
+- A Discord Bot Token ([Discord Developer Portal](https://discord.com/developers/applications))
+- A Google Gemini API Key ([Google AI Studio](https://aistudio.google.com/))
 
-## Requirements
+### 2. Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/gmid-butler.git
+   cd gmid-butler
+   ```
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Configure environment variables:
+   - Rename `.env.example` to `.env`.
+   - Fill in your `DISCORD_TOKEN` and `GEMINI_KEY`.
 
-- Python 3.10 or higher
-- A Discord bot token → [Discord Developer Portal](https://discord.com/developers/applications)
-- A Gemini API key → [Google AI Studio](https://aistudio.google.com/app/apikey)
-
----
-
-## Setup Guide
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/yourusername/gmid-butler.git
-cd gmid-butler
-```
-
-### 2. Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Create your `.env` file
-
-Copy the example file and fill in your credentials:
-
-```bash
-cp .env.example .env
-```
-
-Then open `.env` and edit it:
-
-```env
-DISCORD_TOKEN=your_discord_bot_token_here
-GEMINI_KEY=your_gemini_api_key_here
-BOT_COMMANDS_CHANNEL_ID=your_channel_id_here
-CLEANUP_HOUR=0
-PRIV_CHANNEL_LIFETIME_HOURS=12
-```
-
-> **How to get a Channel ID:** In Discord, go to Settings → Advanced → enable **Developer Mode**. Then right-click any channel and click **Copy ID**.
-
-### 4. Give the bot the right permissions
-
-In the Discord Developer Portal, under your bot's **OAuth2 → URL Generator**, make sure it has these permissions:
-
-| Permission | Why |
-|---|---|
-| Read Messages / View Channels | Read user commands |
-| Send Messages | Reply to users |
-| Manage Channels | Create and delete private channels |
-| Manage Permissions | Set who can see private channels |
-| Manage Messages | Purge bot-commands channel |
-| Read Message History | Required for bulk-delete |
-
-### 5. Run the bot
-
+### 3. Running the Bot
 ```bash
 python main.py
 ```
 
-You should see:
-```
-✅ GMID Butler#1234 olarak giriş yapıldı!
-```
-
----
-
-## Commands
+## 📜 Key Commands
 
 | Command | Description |
-|---|---|
-| `!your message` or `@bot` | Chat with the AI |
-| `!priv` | Open a private channel just for you |
-| `!add @user` | Add someone to your private channel |
-| `!close` | Delete your private channel now |
-| `!unuttun` | Clear the bot's memory of your conversation |
-| `!temizle` | *(Admins only)* Manually trigger the channel cleanup |
+| :--- | :--- |
+| `!<question>` | Ask the Butler a question |
+| `!help` | Show all available commands |
+| `!priv` | Create a private temporary channel |
+| `!add @user` | Add a member to your private channel |
+| `!close` | Close your private channel immediately |
+| `!set clear [hour]` | Schedule daily cleanup (0-23 UTC) |
+| `!set control` | List all active cleanups |
+| `!language [lang]` | Change server language |
+
+## 🛡️ License
+This project is open-source and available under the MIT License.
 
 ---
-
-## Notes
-
-- The bot creates a **🔐 Priv Kanallar** category automatically on first `!priv` use — no setup needed.
-- A SQLite database (`conversations.db`) is created automatically in the project folder.
-- The Flask server (`keep_alive`) is included for hosting on platforms like [Render](https://render.com).
-
----
-
-## License
-
-MIT — free to use and modify.
+*GMID Butler • Always at your service, Sir.*

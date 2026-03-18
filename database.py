@@ -30,6 +30,23 @@ def init_db():
             delete_at DATETIME NOT NULL
         )
     ''')
+
+    # Kanal temizlik ayarları tablosu
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS cleanup_settings (
+            channel_id INTEGER PRIMARY KEY,
+            guild_id INTEGER NOT NULL,
+            cleanup_hour INTEGER NOT NULL -- 0-23
+        )
+    ''')
+    
+    # Sunucu ayarları tablosu
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS guild_settings (
+            guild_id INTEGER PRIMARY KEY,
+            language TEXT NOT NULL DEFAULT 'en'
+        )
+    ''')
     
     conn.commit()
     conn.close()
@@ -127,3 +144,57 @@ def get_priv_channel_owner(channel_id: int) -> str | None:
     result = c.fetchone()
     conn.close()
     return result[0] if result else None
+
+# ─── Temizlik Ayarları Fonksiyonları ────────────────────────────────────────
+
+def set_cleanup(channel_id: int, guild_id: int, hour: int):
+    """Kanal için temizlik saatini ayarla."""
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    c.execute(
+        "INSERT OR REPLACE INTO cleanup_settings (channel_id, guild_id, cleanup_hour) VALUES (?, ?, ?)",
+        (channel_id, guild_id, hour)
+    )
+    conn.commit()
+    conn.close()
+
+def get_cleanup_settings() -> list:
+    """Tüm temizlik ayarlarını döndür."""
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    c.execute("SELECT channel_id, guild_id, cleanup_hour FROM cleanup_settings")
+    rows = c.fetchall()
+    conn.close()
+    return rows
+
+def remove_cleanup(channel_id: int):
+    """Kanal temizlik ayarını sil."""
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    c.execute("DELETE FROM cleanup_settings WHERE channel_id = ?", (channel_id,))
+    conn.commit()
+    conn.close()
+
+# ─── Sunucu Ayarları Fonksiyonları ──────────────────────────────────────────
+
+def set_language(guild_id: int, lang: str):
+    """Sunucu için dil ayarını yap."""
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    c.execute(
+        "INSERT OR REPLACE INTO guild_settings (guild_id, language) VALUES (?, ?)",
+        (guild_id, lang.lower())
+    )
+    conn.commit()
+    conn.close()
+
+def get_language(guild_id: int) -> str:
+    """Sunucunun dil ayarını döndür. Varsayılan 'en'."""
+    if not guild_id:
+        return 'en'
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    c.execute("SELECT language FROM guild_settings WHERE guild_id = ?", (guild_id,))
+    result = c.fetchone()
+    conn.close()
+    return result[0] if result else 'en'
